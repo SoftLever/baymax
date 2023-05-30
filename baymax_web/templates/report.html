@@ -1,0 +1,15 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+
+<center>
+
+<div class="card" style="width: 800px;">
+  <img class="card-img-top" src="{% static 'waveforms/' %}{{ plot }}.png" alt="Lung sound plots">
+  <div class="card-body">
+    <p class="card-text">Diagnosis: {{ diagnosis }}</p>
+  </div>
+</div>
+	
+</center>
+

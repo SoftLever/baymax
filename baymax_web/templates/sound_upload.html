@@ -1,0 +1,26 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'upload.css' %}">
+
+<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<div class="file-upload">
+  <div class="image-upload-wrap">
+    <form method="POST" action="#" id="sound_form" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input name="sound_file" class="file-upload-input" type='file' onchange="readURL(this);" accept="audio/*" requried />
+    </form>
+    <div class="drag-text">
+      <h3>Drag and drop a file or select add Audio</h3>
+    </div>
+  </div>
+  <div class="file-upload-content">
+    <img class="file-upload-image" src="#" alt="Audio file" />
+    <div class="image-title-wrap">
+      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Audio</span></button>
+    </div>
+  </div>
+  <br/>
+  <button form="sound_form" type="submit" class="file-upload-btn">UPLOAD LUNG SOUND</button>
+</div>
+
+<script type="text/javascript" src="{% static 'upload.js' %}"></script>

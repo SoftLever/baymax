@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    env_file:
+      - .env
+    command: gunicorn baymax_web.wsgi:application --bind 0.0.0.0:8000 -t 1200 -w 3
+    ports:
+      - "8000:8000"
+    volumes:
+      - static:/application/staticfiles
+
+  nginx:
+    image: nginx:1.19.6-alpine
+    ports:
+      - 80:80
+      - 443:443
+    restart: "unless-stopped"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
+      - static:/application/static/:ro
+    depends_on:
+      web:
+        condition: service_started
+
+volumes:
+  static:
+    driver: local
